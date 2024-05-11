@@ -1,0 +1,22 @@
+---
+import Layout from '@layouts/Layout.astro'
+
+const res = await fetch(
+  'https://script.google.com/macros/s/AKfycbzJaWR9GG_sLn1dkbgum3AeM1LmLS1Nktkrn8K0pFrlkip0mPn9JRdQQcvrbF-IL-Do/exec',
+)
+const { data } = await res.json()
+const paths = data.map(item => ({
+  params: { job: item.uid }, // Change 'uid' to whatever unique identifier you want to use for the route
+}))
+---
+
+<Layout title="Vagas.pm">
+  <main
+    class="relative isolate bg-gradient-to-b from-slate-100 to-slate-50 pb-24">
+    <div
+      class="relative isolate mx-auto max-w-screen-lg rounded-lg bg-slate-50 p-12 drop-shadow-sm"
+      style="top: -48px;">
+      lalala
+    </div>
+  </main>
+</Layout>

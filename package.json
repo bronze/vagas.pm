@@ -1,0 +1,30 @@
+{
+  "name": "roaster-sheet",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "^3.0.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "@fontsource/merriweather": "^5.0.13",
+    "@fontsource/montserrat": "^5.0.18",
+    "@fontsource/roboto": "^5.0.13",
+    "@fontsource/roboto-slab": "^5.0.20",
+    "alpinejs": "^3.13.10",
+    "astro": "^3.0.12",
+    "tailwindcss": "^3.4.3"
+  },
+  "devDependencies": {
+    "astro-icon": "^1.1.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
+    "prettier-plugin-organize-attributes": "^1.0.0",
+    "prettier-plugin-tailwindcss": "^0.5.14"
+  }
+}

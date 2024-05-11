@@ -1,0 +1,27 @@
+---
+import Header from '../components/Header.astro'
+import Jobs from '../components/Jobs.astro'
+import Layout from '../layouts/Layout.astro'
+import '@css/index.css'
+import '@fontsource/merriweather/400.css'
+import '@fontsource/merriweather/700.css'
+import '@fontsource/montserrat/300.css'
+import '@fontsource/montserrat/300-italic.css'
+import '@fontsource/montserrat/400.css'
+import '@fontsource/montserrat/400-italic.css'
+import '@fontsource/montserrat/500.css'
+import '@fontsource/montserrat/600.css'
+import '@fontsource/montserrat/700.css'
+---
+
+<Layout title="Vagas.pm">
+  <Header />
+  <main
+    class="relative isolate bg-gradient-to-b from-slate-100 to-slate-50 pb-24">
+    <div
+      class="relative isolate mx-auto max-w-screen-lg rounded-lg bg-slate-50 p-12 drop-shadow-sm"
+      style="top: -48px;">
+      <Jobs />
+    </div>
+  </main>
+</Layout>

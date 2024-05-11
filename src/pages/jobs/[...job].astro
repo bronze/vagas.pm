@@ -1,0 +1,91 @@
+---
+import Layout from '@layouts/Layout.astro'
+export async function getStaticPaths() {
+  const res = await fetch(
+    'https://script.google.com/macros/s/AKfycbzJaWR9GG_sLn1dkbgum3AeM1LmLS1Nktkrn8K0pFrlkip0mPn9JRdQQcvrbF-IL-Do/exec',
+  )
+  // const { data } = await res.json()
+  const text = await res.text() // Force UTF-8 encoding
+  const { data } = JSON.parse(text)
+
+  return data.map(item => ({
+    params: { job: item.uid }, // Change 'uid' to whatever unique identifier you want to use for the route
+    props: { jobDetails: item }, // Include additional properties here
+  }))
+}
+const headers = new Headers({
+  'Content-Type': 'application/json; charset=utf-8',
+})
+export const prerender = true
+const { job } = Astro.params
+const { jobDetails } = Astro.props
+
+const title = jobDetails.job
+---
+
+<Layout title="Vagas.pm">
+  <main
+    class="relative isolate mx-auto bg-gradient-to-b from-slate-200 to-slate-50 py-48 text-center">
+    {
+      jobDetails.company_img && (
+        <img
+          src={jobDetails.company_img}
+          alt={jobDetails.company}
+          height="100"
+          width="100"
+          class="mx-auto"
+          onError={e => {
+            e.target.style.display = 'none' // Hide the image if it fails to load
+          }}
+        />
+      )
+    }
+    <h1 class="mb-8 mt-4 font-serif text-5xl font-bold">{title}</h1>
+    <div class="job-listing-meta mx-auto flex max-w-screen-lg">
+      <ul class="job-details flex grow" style="flex-basis: max-content;">
+        <li class="company flex p-6">
+          <div class="meta-title">Company</div>
+          <div class="meta-content">{jobDetails.company}</div>
+        </li>
+        <li class="job-type full-time flex p-6">
+          <div class="meta-title">Role</div>
+          <div class="meta-content">{jobDetails.category}</div>
+        </li>
+        <li class="location flex p-6">
+          <div class="meta-title">Location</div>
+          <div class="meta-content">{jobDetails.location}</div>
+        </li>
+      </ul>
+      <div class="company-links flex shrink p-6 text-right">
+        <div class="company-links-title">Company Links</div>
+        <ul class="company-social">
+          <li>
+            <a
+              href="https://www.stickermule.com/"
+              rel="nofollow"
+              target="_blank"
+              class="company-website"
+              style="background-color: rgb(77, 44, 21);"
+              ><i class="fa-regular fa-globe" aria-hidden="true"></i></a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="relative isolate mx-auto max-w-screen-lg rounded-lg bg-slate-50 p-12 text-left drop-shadow-sm">
+      {jobDetails.job_description}
+    </div>
+  </main>
+</Layout>
+<style>
+  .meta-title {
+    @apply text-slate-500;
+  }
+  .meta-content {
+    @apply font-bold;
+  }
+  li {
+    @apply flex-col text-left;
+  }
+</style>

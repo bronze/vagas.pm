@@ -1,0 +1,101 @@
+---
+const res = await fetch(
+  'https://script.google.com/macros/s/AKfycbzJaWR9GG_sLn1dkbgum3AeM1LmLS1Nktkrn8K0pFrlkip0mPn9JRdQQcvrbF-IL-Do/exec',
+)
+const { data } = await res.json()
+// console.log(data)
+// const data = [
+//   {
+//     uid: '803b5f28-33ca-43a1-acc9-37a8ca2c565f',
+//     job: 'Profissional de Product Owner Júnior ',
+//     role: 'Freelance',
+//     location: 'Remoto',
+//     apply_link: 'https://lnkd.in/e6Hpt9Sj',
+//     category: 'Product Owner',
+//     company: 'Radix',
+//     company_link: 'www.radix.com.br',
+//     company_img: 'https://vagaspm.netlify.app/refresh.png',
+//     company_category: 'IT Services and IT Consulting',
+//     company_tag: '',
+//     job_description: 'descript'
+//   },
+//   {
+//     uid: '2a229012-c253-4cbd-84c8-889678817dc3',
+//     job: 'Analista de Desenvolvimento de Produtos Sênior',
+//     role: 'Tempo Integral',
+//     location: 'Posto',
+//     apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
+//     category: 'Cheio de gás',
+//     company: 'Ipiranga',
+//     company_link: 'www.ipiranga.com.br',
+//     company_img: '',
+//     company_category: 'Gasolina',
+//     company_tag: 'ipi ipi ipiranga',
+//     job_description: 'descript'
+//   },
+//   {
+//     uid: '0cbb94c4-db5c-4dcf-a303-75ccee696ea4',
+//     job: 'Analista de Desenvolvimento de Produtos Sênior',
+//     role: 'Tempo Integral',
+//     location: 'Posto',
+//     apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
+//     category: 'Cheio de gás',
+//     company: 'Ipiranga',
+//     company_link: 'www.ipiranga.com.br',
+//     company_img: '',
+//     company_category: 'Gasolina',
+//     company_tag: 'ipi ipi ipiranga',
+//     job_description: 'descript'
+//   }
+// ]
+
+import JobCard from './JobCard.astro'
+
+// create an array of unique states and the count of each that appears in the data
+// const states = data.reduce((acc, cur) => {
+//   const state = cur.state
+//   if (acc[state]) {
+//     acc[state] += 1
+//   } else {
+//     acc[state] = 1
+//   }
+//   return acc
+// }, {})
+
+// sort the states by count descending
+// const sortedStates = Object.keys(states).sort((a, b) => states[b] - states[a])
+
+// create an object array of states and counts
+// const stateCounts = sortedStates.map(state => {
+//   return {
+//     state,
+//     count: states[state],
+//   }
+// })
+---
+
+<div class="pb-4">todo: busca</div>
+<ul class="space-y-12">
+  {data.map(i => <JobCard data={i} />)}
+</ul>
+
+<!-- <div class="grid-container">
+  {
+    stateCounts.map(r => (
+      <div class="grid-item">
+        {r.state}: {r.count}
+      </div>
+    ))
+  }
+</div>
+
+<h3>Coffee Roasters with Location</h3>
+<div class="grid-container">
+  {
+    data.map(r => (
+      <div class="grid-item">
+        {r.roaster} - {r.location}
+      </div>
+    ))
+  }
+</div> -->

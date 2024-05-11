@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets'
+type Props = {
+  data: {
+    uid: string
+    job: string
+    role: string
+    location: string
+    apply_link: string
+    category: string
+    company: string
+    company_link: string
+    company_img: string
+    company_category: string
+    company_tag: string
+    job_description: string
+  }
+}
+
+const { data } = Astro.props
+// import the Image component and the image
+// import { Image } from 'astro:assets'
+// import myImage from {data.company_img} // Image is 1600x900
+
+const idlink = 'jobs/' + data.uid
+
+// const analyticsShow = isDev ? 'isDev' : 'PlausibleAnalytics' // PlausibleAnalytics
+---
+
+<li
+  class="relative grid items-center gap-4 rounded border border-l-4 border-slate-400 p-4 pb-5 shadow-md"
+  style="grid-template-columns: 65px 0.7fr 0.3fr;">
+  <div>
+    {
+      data.company_img && (
+        <img
+          src={data.company_img}
+          alt={data.company}
+          height="65"
+          width="65"
+          onError={e => {
+            e.target.style.display = 'none' // Hide the image if it fails to load
+          }}
+        />
+      )
+    }
+  </div>
+  <div>
+    <p class="mb-2 font-serif text-xl font-semibold">
+      <a href={idlink}>
+        {data.job} <span class="absolute inset-0" aria-hidden="true"></span></a
+      >
+    </p>
+    <p class="text-base text-slate-500">
+      <span class="font-bold">{data.company}</span>
+      <span>{data.company_tag}</span>
+    </p>
+    <p class="text-xs text-slate-400">
+      <span class="">{data.company_category}</span>
+    </p>
+  </div>
+  <div class="">
+    <p class="text-base" title="Local">{data.location}</p>
+    <p class="text-sm font-bold text-slate-700" title="Categoria">
+      {data.category}
+    </p>
+    <p class="text-xs font-light italic text-slate-400">time</p>
+    <!-- <a
+      href={data.apply_link}
+      class="absolute -right-12 top-0 m-0 font-mono text-xs font-bold"
+      style="margin: 0 !important;"
+      target="_blank">
+      quick<br />apply
+    </a> -->
+  </div>
+</li>
+
+<style>
+  div:last-of-type p {
+    @apply text-right;
+  }
+</style>

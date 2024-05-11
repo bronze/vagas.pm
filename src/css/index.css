@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Merriweather';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/Roboto.woff2) format('woff2');
+  }
+}
+
+header {
+  position: relative;
+}
+/* #page::before {
+  content: '';
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: block;
+  border-radius: 10px 10px 0 0;
+  background: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+#page::after {
+  content: '';
+  display: table;
+  clear: both;
+} */
