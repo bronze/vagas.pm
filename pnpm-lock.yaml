@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@alpinejs/collapse':
+    specifier: ^3.13.10
+    version: 3.13.10
+  '@astrojs/alpinejs':
+    specifier: ^0.4.0
+    version: 0.4.0(@types/alpinejs@3.13.10)(alpinejs@3.13.10)
   '@astrojs/netlify':
     specifier: ^3.0.1
     version: 3.1.1(@opentelemetry/api@1.8.0)(astro@3.6.5)
@@ -23,6 +29,9 @@ dependencies:
   '@fontsource/roboto-slab':
     specifier: ^5.0.20
     version: 5.0.20
+  '@types/alpinejs':
+    specifier: ^3.13.10
+    version: 3.13.10
   alpinejs:
     specifier: ^3.13.10
     version: 3.13.10
@@ -34,6 +43,12 @@ dependencies:
     version: 3.4.3
 
 devDependencies:
+  '@alpinejs/focus':
+    specifier: ^3.13.10
+    version: 3.13.10
+  '@alpinejs/ui':
+    specifier: 3.13.10-beta.0
+    version: 3.13.10-beta.0
   astro-icon:
     specifier: ^1.1.0
     version: 1.1.0
@@ -57,6 +72,21 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /@alpinejs/collapse@3.13.10:
+    resolution: {integrity: sha512-D4CRrwXdhuJdQX8gJvYBajMj90I85huf395eB8E+PfGy2QQZOxZxd92TWzaMLnMQlFHPkZ+chZmFuewjZ7y52Q==}
+    dev: false
+
+  /@alpinejs/focus@3.13.10:
+    resolution: {integrity: sha512-4W4AvVtqq3Ozosa+PEopIJqAIoyWOll24t/LClNmQPPl3exsns84sfN+V5SVPLfbBH+uoaCkxEq2rae6U7/MBA==}
+    dependencies:
+      focus-trap: 6.9.4
+      tabbable: 5.3.3
+    dev: true
+
+  /@alpinejs/ui@3.13.10-beta.0:
+    resolution: {integrity: sha512-hm4hZ7KXMTLaBOTxw+3oYPMzCVBA8vsBUJuYeAyVYYMgsLjOnA05nNiD5ijb9b04mt2Kh77/kKGt2Ao38v4O5g==}
+    dev: true
+
   /@ampproject/remapping@2.3.0:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
@@ -75,6 +105,16 @@ packages:
   /@antfu/utils@0.7.8:
     resolution: {integrity: sha512-rWQkqXRESdjXtc+7NRfK9lASQjpXJu1ayp7qi1d23zZorY+wBHVLHHoVcMsEnkqEBWTFqbztO7/QdJFzyEcLTg==}
     dev: true
+
+  /@astrojs/alpinejs@0.4.0(@types/alpinejs@3.13.10)(alpinejs@3.13.10):
+    resolution: {integrity: sha512-68BY1CA0XuielLW3WdX2sfh9F4sSTnFqQ//IE9AditbiYJ77HJDb4uZx07pTFDtr1jOMU7lCvH+iS9gmNafM1g==}
+    peerDependencies:
+      '@types/alpinejs': ^3.0.0
+      alpinejs: ^3.0.0
+    dependencies:
+      '@types/alpinejs': 3.13.10
+      alpinejs: 3.13.10
+    dev: false
 
   /@astrojs/compiler@1.8.2:
     resolution: {integrity: sha512-o/ObKgtMzl8SlpIdzaxFnt7SATKPxu4oIP/1NL+HDJRzxfJcAkOTAb/ZKMRyULbz4q+1t2/DAebs2Z1QairkZw==}
@@ -1109,6 +1149,10 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
     dev: true
+
+  /@types/alpinejs@3.13.10:
+    resolution: {integrity: sha512-ah53tF6mWuuwerpDE7EHwbZErNDJQlsLISPqJhYj2RZ9nuTYbRknSkqebUd3igkhLIZKkPa7IiXjSn9qsU9O2w==}
+    dev: false
 
   /@types/babel__core@7.20.5:
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -2173,6 +2217,12 @@ packages:
       micromatch: 4.0.5
       pkg-dir: 4.2.0
     dev: false
+
+  /focus-trap@6.9.4:
+    resolution: {integrity: sha512-v2NTsZe2FF59Y+sDykKY+XjqZ0cPfhq/hikWVL88BqLivnNiEffAsac6rP6H45ff9wG9LL5ToiDqrLEP9GX9mw==}
+    dependencies:
+      tabbable: 5.3.3
+    dev: true
 
   /foreground-child@3.1.1:
     resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==}
@@ -4300,6 +4350,10 @@ packages:
       css-tree: 2.3.1
       csso: 5.0.5
       picocolors: 1.0.0
+    dev: true
+
+  /tabbable@5.3.3:
+    resolution: {integrity: sha512-QD9qKY3StfbZqWOPLp0++pOrAVb/HbUi5xCc8cUo4XjP19808oaMiDzn0leBY5mCespIBM0CIZePzZjgzR83kA==}
     dev: true
 
   /tailwindcss@3.4.3:
