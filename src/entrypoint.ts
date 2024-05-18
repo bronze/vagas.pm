@@ -119,25 +119,26 @@ document.addEventListener('alpine:init', () => {
     ],
     get filteredJobs() {
       return this.jobs.filter(job => {
-        return (
-          job.title
-            .toLowerCase()
-            .includes(this.searchQuery.keywords.toLowerCase()) &&
-          job.place
-            .toLowerCase()
-            .includes(this.searchQuery.place.toLowerCase()) &&
-          job.category
-            .toLowerCase()
-            .includes(this.searchQuery.category.toLowerCase()) &&
-          ((this.filters.freelance && job.type === 'Freelance') ||
-            (this.filters.fullTime && job.type === 'Full-time') ||
-            (this.filters.internship && job.type === 'Internship') ||
-            (this.filters.partTime && job.type === 'Part-time') ||
-            (!this.filters.freelance &&
-              !this.filters.fullTime &&
-              !this.filters.internship &&
-              !this.filters.partTime))
-        )
+        const keywordMatch = (job.title + job.place + job.category + job.type)
+          .toLowerCase()
+          .includes(this.searchQuery.keywords.toLowerCase())
+        const placeMatch = job.place
+          .toLowerCase()
+          .includes(this.searchQuery.place.toLowerCase())
+        const categoryMatch = job.category
+          .toLowerCase()
+          .includes(this.searchQuery.category.toLowerCase())
+        const typeMatch =
+          (this.filters.freelance && job.type === 'Freelance') ||
+          (this.filters.fullTime && job.type === 'Full-time') ||
+          (this.filters.internship && job.type === 'Internship') ||
+          (this.filters.partTime && job.type === 'Part-time') ||
+          (!this.filters.freelance &&
+            !this.filters.fullTime &&
+            !this.filters.internship &&
+            !this.filters.partTime)
+
+        return keywordMatch && placeMatch && categoryMatch && typeMatch
       })
     },
   }))

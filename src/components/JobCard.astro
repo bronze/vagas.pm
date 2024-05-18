@@ -31,10 +31,7 @@ const descriptionWithBreaks = description.replace(/\n/g, '<br />')
 
 <li
   x-data="{ expanded: false }"
-  x-show="show_item($el)
-  @click="
-  expanded="!"
-  expanded"
+  @click="expanded = ! expanded"
   class="relative rounded border border-l-4 border-slate-400 p-4 pb-5 shadow-md">
   <div
     class="grid w-full items-center gap-4"
