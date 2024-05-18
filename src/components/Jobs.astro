@@ -200,6 +200,7 @@ import JobCard from './JobCard.astro'
           placeholder="Palavras-chave"
           class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
           x-model="searchQuery.keywords"
+          @input="filterJobs"
         />
       </div>
       <div class="relative w-full">
@@ -212,6 +213,7 @@ import JobCard from './JobCard.astro'
           placeholder="Local"
           class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
           x-model="searchQuery.location"
+          @input="filterJobs"
         />
       </div>
       <div>
@@ -258,6 +260,17 @@ import JobCard from './JobCard.astro'
               class="absolute left-0 z-10 mt-2 max-h-60 w-full max-w-xs origin-top-right overflow-auto rounded-md border border-gray-200 bg-white shadow-md outline-none"
               x-transition.out.opacity>
               <ul class="divide-y divide-gray-100">
+                <!-- Special option for clearing selection -->
+                <li
+                  x-combobox:option
+                  @click="clearCategory()"
+                  :class="{
+                    'bg-cyan-500/10 text-gray-900': $comboboxOption.isActive,
+                    'text-gray-600': !$comboboxOption.isActive,
+                  }"
+                  class="flex w-full cursor-default items-center justify-between gap-2 px-4 py-2 text-sm">
+                  <span>Todas Categorias</span>
+                </li>
                 <template
                   x-for="framework in filteredFrameworks"
                   :key="framework.id"

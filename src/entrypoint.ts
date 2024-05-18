@@ -212,6 +212,11 @@ document.addEventListener('alpine:init', () => {
       this.searchQuery.category = framework.name
       this.filterJobs()
     },
+    clearCategory() {
+      this.selected = null
+      this.searchQuery.category = ''
+      this.filterJobs()
+    },
     filterJobs() {
       // The filter function will automatically run due to reactivity in Alpine.js
     },
