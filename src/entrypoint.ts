@@ -55,4 +55,90 @@ document.addEventListener('alpine:init', () => {
           })
     },
   }))
+  Alpine.data('search', () => ({
+    search: '',
+    show_item(el) {
+      return this.search === '' || el.textContent.includes(this.search)
+    },
+  }))
+  Alpine.data('jobFilter', () => ({
+    searchQuery: {
+      keywords: '',
+      place: '',
+      category: '',
+    },
+    filters: {
+      freelance: false,
+      fullTime: false,
+      internship: false,
+      partTime: false,
+    },
+    jobs: [
+      {
+        id: 1,
+        title: 'Web Developer',
+        type: 'Freelance',
+        place: 'Remote',
+        category: 'IT',
+      },
+      {
+        id: 2,
+        title: 'Software Engineer',
+        type: 'Full-time',
+        place: 'New York',
+        category: 'IT',
+      },
+      {
+        id: 3,
+        title: 'Project Manager',
+        type: 'Part-time',
+        place: 'San Francisco',
+        category: 'Management',
+      },
+      {
+        id: 4,
+        title: 'Intern',
+        type: 'Internship',
+        place: 'Los Angeles',
+        category: 'IT',
+      },
+      {
+        id: 5,
+        title: 'Graphic Designer',
+        type: 'Freelance',
+        place: 'Remote',
+        category: 'Design',
+      },
+      {
+        id: 6,
+        title: 'Data Scientist',
+        type: 'Full-time',
+        place: 'Chicago',
+        category: 'Data',
+      },
+    ],
+    get filteredJobs() {
+      return this.jobs.filter(job => {
+        return (
+          job.title
+            .toLowerCase()
+            .includes(this.searchQuery.keywords.toLowerCase()) &&
+          job.place
+            .toLowerCase()
+            .includes(this.searchQuery.place.toLowerCase()) &&
+          job.category
+            .toLowerCase()
+            .includes(this.searchQuery.category.toLowerCase()) &&
+          ((this.filters.freelance && job.type === 'Freelance') ||
+            (this.filters.fullTime && job.type === 'Full-time') ||
+            (this.filters.internship && job.type === 'Internship') ||
+            (this.filters.partTime && job.type === 'Part-time') ||
+            (!this.filters.freelance &&
+              !this.filters.fullTime &&
+              !this.filters.internship &&
+              !this.filters.partTime))
+        )
+      })
+    },
+  }))
 })

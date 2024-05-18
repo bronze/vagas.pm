@@ -75,138 +75,210 @@ import JobCard from './JobCard.astro'
 // })
 ---
 
-<div class="mb-12 border-b border-solid border-slate-300 p-6">
-  <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-    <div class="relative w-full">
-      <Icon
-        name="mdi:search"
-        class="absolute left-3 top-1/2 -translate-y-1/2 transform text-2xl text-gray-400"
-      />
+<div
+  class="w-full max-w-3xl rounded-lg bg-white p-6 shadow-lg"
+  x-data="jobFilter()">
+  <div class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+    <input
+      type="text"
+      placeholder="Search by keywords"
+      class="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      x-model="searchQuery.keywords"
+    />
+    <input
+      type="text"
+      placeholder="Search by place"
+      class="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      x-model="searchQuery.place"
+    />
+    <input
+      type="text"
+      placeholder="Search by category"
+      class="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      x-model="searchQuery.category"
+    />
+  </div>
+  <div class="mb-4 flex space-x-4">
+    <label class="inline-flex items-center">
       <input
-        type="text"
-        placeholder="Palavras-chave"
-        class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
+        type="checkbox"
+        class="form-checkbox peer text-blue-500"
+        x-model="filters.freelance"
       />
-    </div>
-    <div class="relative w-full">
-      <Icon
-        name="mdi:place-outline"
-        class="absolute left-3 top-1/2 -translate-y-1/2 transform text-2xl text-gray-400"
-      />
+      <span class="ml-2 peer-checked:text-blue-500">Freelance</span>
+    </label>
+    <label class="inline-flex items-center">
       <input
-        type="text"
-        placeholder="Local"
-        class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
+        type="checkbox"
+        class="form-checkbox peer text-green-500"
+        x-model="filters.fullTime"
       />
-    </div>
-    <div x-data="categorias">
-      <div
-        x-combobox
-        x-model="selected"
-        class="relative rounded-lg focus-within:ring-2 focus-within:ring-sky-300">
-        <div class="relative">
-          <div
-            class="relative flex items-center justify-between gap-2 rounded-lg border border-gray-300 bg-white p-2">
-            <Icon
-              name="mdi:category-plus-outline"
-              class="absolute left-3 top-1/2 -translate-y-1/2 transform text-2xl text-gray-400"
-            />
-            <input
-              x-combobox:input
-              :display-value="framework => framework.name"
-              @change="query = $event.target.value;"
-              class="w-full border-none p-0 pl-10 focus:outline-none focus:ring-0"
-              placeholder="Categorias"
-            />
-            <button
-              x-combobox:button
-              class="absolute inset-y-0 right-0 flex items-center pr-2">
-              <!-- Heroicons up/down -->
-              <svg
-                class="h-5 w-5 shrink-0 bg-white text-gray-500"
-                viewBox="0 0 20 20"
-                fill="none"
-                stroke="currentColor"
-                ><path
-                  d="M7 7l3-3 3 3m0 6l-3 3-3-3"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path></svg
-              >
-            </button>
-          </div>
+      <span class="ml-2 peer-checked:text-green-500">Full-time</span>
+    </label>
+    <label class="inline-flex items-center">
+      <input
+        type="checkbox"
+        class="form-checkbox peer text-red-500"
+        x-model="filters.internship"
+      />
+      <span class="ml-2 peer-checked:text-red-500">Internship</span>
+    </label>
+    <label class="inline-flex items-center">
+      <input
+        type="checkbox"
+        class="form-checkbox peer text-yellow-500"
+        x-model="filters.partTime"
+      />
+      <span class="ml-2 peer-checked:text-yellow-500">Part-time</span>
+    </label>
+  </div>
+  <div>
+    <ul>
+      <template x-for="job in filteredJobs" :key="job.id">
+        <li class="border-b border-gray-200 py-2">
+          <span class="font-semibold" x-text="job.title"></span> - <span
+            x-text="job.type"></span> - <span x-text="job.place"></span> - <span
+            x-text="job.category"></span>
+        </li>
+      </template>
+    </ul>
+  </div>
+</div>
 
-          <div
-            x-combobox:options
-            x-cloak
-            class="absolute left-0 z-10 mt-2 max-h-60 w-full max-w-xs origin-top-right overflow-auto rounded-md border border-gray-200 bg-white shadow-md outline-none"
-            x-transition.out.opacity>
-            <ul class="divide-y divide-gray-100">
-              <template
-                x-for="framework in filteredFrameworks"
-                :key="framework.id"
-                hidden>
-                <li
-                  x-combobox:option
-                  :value="framework"
-                  :disabled="framework.disabled"
-                  :class="{
+<div x-data="search">
+  <div class="mb-12 border-b border-solid border-slate-300 p-6">
+    <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div class="relative w-full">
+        <Icon
+          name="mdi:search"
+          class="absolute left-3 top-1/2 -translate-y-1/2 transform text-2xl text-gray-400"
+        />
+        <input
+          type="text"
+          placeholder="Palavras-chave"
+          class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
+        />
+      </div>
+      <div class="relative w-full">
+        <Icon
+          name="mdi:place-outline"
+          class="absolute left-3 top-1/2 -translate-y-1/2 transform text-2xl text-gray-400"
+        />
+        <input
+          type="text"
+          placeholder="Local"
+          class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
+        />
+      </div>
+      <div x-data="categorias">
+        <div
+          x-combobox
+          x-model="selected"
+          class="relative rounded-lg focus-within:ring-2 focus-within:ring-sky-300">
+          <div class="relative">
+            <div
+              class="relative flex items-center justify-between gap-2 rounded-lg border border-gray-300 bg-white p-2">
+              <Icon
+                name="mdi:category-plus-outline"
+                class="absolute left-3 top-1/2 -translate-y-1/2 transform text-2xl text-gray-400"
+              />
+              <input
+                x-combobox:input
+                :display-value="framework => framework.name"
+                @change="query = $event.target.value;"
+                class="w-full border-none p-0 pl-10 focus:outline-none focus:ring-0"
+                placeholder="Categorias"
+                x-model="search"
+              />
+              <button
+                x-combobox:button
+                class="absolute inset-y-0 right-0 flex items-center pr-2">
+                <!-- Heroicons up/down -->
+                <svg
+                  class="h-5 w-5 shrink-0 bg-white text-gray-500"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  stroke="currentColor"
+                  ><path
+                    d="M7 7l3-3 3 3m0 6l-3 3-3-3"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path></svg
+                >
+              </button>
+            </div>
+
+            <div
+              x-combobox:options
+              x-cloak
+              class="absolute left-0 z-10 mt-2 max-h-60 w-full max-w-xs origin-top-right overflow-auto rounded-md border border-gray-200 bg-white shadow-md outline-none"
+              x-transition.out.opacity>
+              <ul class="divide-y divide-gray-100">
+                <template
+                  x-for="framework in filteredFrameworks"
+                  :key="framework.id"
+                  hidden>
+                  <li
+                    x-combobox:option
+                    :value="framework"
+                    :disabled="framework.disabled"
+                    :class="{
                                 'bg-cyan-500/10 text-gray-900': $comboboxOption.isActive,
                                 'text-gray-600': ! $comboboxOption.isActive,
                                 'opacity-50 cursor-not-allowed': $comboboxOption.isDisabled,
                             }"
-                  class="flex w-full cursor-default items-center justify-between gap-2 px-4 py-2 text-sm">
-                  <span x-text="framework.name"></span>
+                    class="flex w-full cursor-default items-center justify-between gap-2 px-4 py-2 text-sm">
+                    <span x-text="framework.name"></span>
 
-                  <span
-                    x-show="$comboboxOption.isSelected"
-                    class="font-bold text-cyan-600">&check;</span
-                  >
-                </li>
-              </template>
-            </ul>
+                    <span
+                      x-show="$comboboxOption.isSelected"
+                      class="font-bold text-cyan-600">&check;</span
+                    >
+                  </li>
+                </template>
+              </ul>
 
-            <p
-              x-show="filteredFrameworks.length == 0"
-              class="px-4 py-2 text-sm text-gray-600">
-              No frameworks match your query.
-            </p>
+              <p
+                x-show="filteredFrameworks.length == 0"
+                class="px-4 py-2 text-sm text-gray-600">
+                Não há Categorias com esse termo.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <button
-      class="rounded-lg bg-sky-300 px-4 py-2 text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-300">
-      Search
-    </button>
-  </div>
-  <div class="pt-6 font-semibold text-slate-500">
-    <div class="flex space-x-4">
-      <label class="inline-flex items-center">
-        <input type="checkbox" class="form-checkbox peer" />
-        <span class="ml-2 peer-checked:text-sky-300">Freelance</span>
-      </label>
-      <label class="inline-flex items-center">
-        <input type="checkbox" class="form-checkbox peer" />
-        <span class="ml-2 peer-checked:text-sky-300">Full-time</span>
-      </label>
-      <label class="inline-flex items-center">
-        <input type="checkbox" class="form-checkbox peer" />
-        <span class="ml-2 peer-checked:text-sky-300">Internship</span>
-      </label>
-      <label class="inline-flex items-center">
-        <input type="checkbox" class="form-checkbox peer" />
-        <span class="ml-2 peer-checked:text-sky-300">Part-time</span>
-      </label>
+      <button
+        class="rounded-lg bg-sky-300 px-4 py-2 text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-300">
+        Search
+      </button>
+    </div>
+    <div class="pt-6 font-semibold text-slate-500">
+      <div class="flex space-x-4">
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="form-checkbox peer" />
+          <span class="ml-2 peer-checked:text-sky-300">Freelance</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="form-checkbox peer" />
+          <span class="ml-2 peer-checked:text-sky-300">Full-time</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="form-checkbox peer" />
+          <span class="ml-2 peer-checked:text-sky-300">Internship</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input type="checkbox" class="form-checkbox peer" />
+          <span class="ml-2 peer-checked:text-sky-300">Part-time</span>
+        </label>
+      </div>
     </div>
   </div>
+
+  <ul class="space-y-12">
+    {data.map(i => <JobCard data={i} />)}
+  </ul>
 </div>
-
-<ul class="space-y-12">
-  {data.map(i => <JobCard data={i} />)}
-</ul>
-
 <!-- <div class="grid-container">
   {
     stateCounts.map(r => (
