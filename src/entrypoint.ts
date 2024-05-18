@@ -10,51 +10,7 @@ Alpine.plugin(focus)
 Alpine.plugin(ui)
 
 document.addEventListener('alpine:init', () => {
-  Alpine.data('categorias', () => ({
-    query: '',
-    selected: null,
-    frameworks: [
-      {
-        id: 1,
-        name: 'Designer',
-        disabled: false,
-      },
-      {
-        id: 2,
-        name: 'Product Manager',
-        disabled: false,
-      },
-      {
-        id: 3,
-        name: 'Programador Front-end',
-        disabled: false,
-      },
-      {
-        id: 4,
-        name: 'Programador Back-end',
-        disabled: false,
-      },
-      {
-        id: 5,
-        name: 'Redator',
-        disabled: false,
-      },
-      {
-        id: 6,
-        name: 'Marketing',
-        disabled: false,
-      },
-    ],
-    get filteredFrameworks() {
-      return this.query === ''
-        ? this.frameworks
-        : this.frameworks.filter(framework => {
-            return framework.name
-              .toLowerCase()
-              .includes(this.query.toLowerCase())
-          })
-    },
-  }))
+  Alpine.data('categorias', () => ({}))
   Alpine.data('jobFilter_backup', () => ({
     searchQuery: {
       keywords: '',
@@ -170,6 +126,49 @@ document.addEventListener('alpine:init', () => {
       internship: false,
       partTime: false,
     },
+    query: '',
+    selected: null,
+    frameworks: [
+      {
+        id: 1,
+        name: 'Design',
+        disabled: false,
+      },
+      {
+        id: 2,
+        name: 'Product Management',
+        disabled: false,
+      },
+      {
+        id: 3,
+        name: 'Programação Front-end',
+        disabled: false,
+      },
+      {
+        id: 4,
+        name: 'Programação Back-end',
+        disabled: false,
+      },
+      {
+        id: 5,
+        name: 'Redator',
+        disabled: false,
+      },
+      {
+        id: 6,
+        name: 'Marketing',
+        disabled: false,
+      },
+    ],
+    get filteredFrameworks() {
+      return this.query === ''
+        ? this.frameworks
+        : this.frameworks.filter(framework => {
+            return framework.name
+              .toLowerCase()
+              .includes(this.query.toLowerCase())
+          })
+    },
     jobs: [],
     get filteredJobs() {
       if (!Array.isArray(this.jobs)) {
@@ -191,11 +190,11 @@ document.addEventListener('alpine:init', () => {
           (this.filters.freelance &&
             job.role.toLowerCase().includes('freelance')) ||
           (this.filters.fullTime &&
-            job.role.toLowerCase().includes('full-time')) ||
+            job.role.toLowerCase().includes('tempo integral')) ||
           (this.filters.internship &&
-            job.role.toLowerCase().includes('internship')) ||
+            job.role.toLowerCase().includes('estágio')) ||
           (this.filters.partTime &&
-            job.role.toLowerCase().includes('part-time')) ||
+            job.role.toLowerCase().includes('meio expediente')) ||
           (!this.filters.freelance &&
             !this.filters.fullTime &&
             !this.filters.internship &&

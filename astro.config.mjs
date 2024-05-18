@@ -6,7 +6,7 @@ import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: netlify(),
+  output: "static",
+  // adapter: netlify(),
   integrations: [tailwind(), icon(), alpinejs({entrypoint: '/src/entrypoint'})]
 });
