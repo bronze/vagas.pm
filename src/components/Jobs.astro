@@ -7,8 +7,92 @@ import { Icon } from 'astro-icon/components'
 // console.log(data)
 const data = [
   {
+    uid: 1,
+    title: 'Web Developer',
+    role: 'Freelance',
+    location: 'Remote',
+    category: 'IT',
+    apply_link: 'https://lnkd.in/e6Hpt9Sj',
+    company: 'Radix',
+    company_link: 'www.radix.com.br',
+    company_img: 'https://vagaspm.netlify.app/refresh.png',
+    company_category: 'IT Services and IT Consulting',
+    company_tag: '',
+    job_description: 'descript',
+  },
+  {
+    uid: 2,
+    title: 'Software Engineer',
+    role: 'Full-time',
+    location: 'New York',
+    category: 'IT',
+    apply_link: 'https://lnkd.in/e6Hpt9Sj',
+    company: 'Radix',
+    company_link: 'www.radix.com.br',
+    company_img: 'https://vagaspm.netlify.app/refresh.png',
+    company_category: 'IT Services and IT Consulting',
+    company_tag: '',
+    job_description: 'descript',
+  },
+  {
+    uid: 3,
+    title: 'Project Manager',
+    role: 'Part-time',
+    location: 'San Francisco',
+    category: 'Management',
+    apply_link: 'https://lnkd.in/e6Hpt9Sj',
+    company: 'Radix',
+    company_link: 'www.radix.com.br',
+    company_img: 'https://vagaspm.netlify.app/refresh.png',
+    company_category: 'IT Services and IT Consulting',
+    company_tag: '',
+    job_description: 'descript',
+  },
+  {
+    uid: 4,
+    title: 'Intern',
+    role: 'Internship',
+    location: 'Los Angeles',
+    category: 'IT',
+    apply_link: 'https://lnkd.in/e6Hpt9Sj',
+    company: 'Radix',
+    company_link: 'www.radix.com.br',
+    company_img: 'https://vagaspm.netlify.app/refresh.png',
+    company_category: 'IT Services and IT Consulting',
+    company_tag: '',
+    job_description: 'descript',
+  },
+  {
+    uid: 5,
+    title: 'Graphic Designer',
+    role: 'Freelance',
+    location: 'Remote',
+    category: 'Design',
+    apply_link: 'https://lnkd.in/e6Hpt9Sj',
+    company: 'Radix',
+    company_link: 'www.radix.com.br',
+    company_img: 'https://vagaspm.netlify.app/refresh.png',
+    company_category: 'IT Services and IT Consulting',
+    company_tag: '',
+    job_description: 'descript',
+  },
+  {
+    uid: 6,
+    title: 'Data Scientist',
+    role: 'Full-time',
+    location: 'Chicago',
+    category: 'Data',
+    apply_link: 'https://lnkd.in/e6Hpt9Sj',
+    company: 'Radix',
+    company_link: 'www.radix.com.br',
+    company_img: 'https://vagaspm.netlify.app/refresh.png',
+    company_category: 'IT Services and IT Consulting',
+    company_tag: '',
+    job_description: 'descript',
+  },
+  {
     uid: '803b5f28-33ca-43a1-acc9-37a8ca2c565f',
-    job: 'Profissional de Product Owner Júnior ',
+    title: 'Profissional de Product Owner Júnior ',
     role: 'Freelance',
     location: 'Remoto',
     apply_link: 'https://lnkd.in/e6Hpt9Sj',
@@ -22,7 +106,7 @@ const data = [
   },
   {
     uid: '2a229012-c253-4cbd-84c8-889678817dc3',
-    job: 'Analista de Desenvolvimento de Produtos Sênior',
+    title: 'Analista de Desenvolvimento de Produtos Sênior',
     role: 'Tempo Integral',
     location: 'Posto',
     apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
@@ -36,7 +120,35 @@ const data = [
   },
   {
     uid: '0cbb94c4-db5c-4dcf-a303-75ccee696ea4',
-    job: 'Analista de Desenvolvimento de Produtos Sênior',
+    title: 'Analista de Desenvolvimento de Produtos Sênior',
+    role: 'Tempo Integral',
+    location: 'Posto',
+    apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
+    category: 'Cheio de gás',
+    company: 'Ipiranga',
+    company_link: 'www.ipiranga.com.br',
+    company_img: '',
+    company_category: 'Gasolina',
+    company_tag: 'ipi ipi ipiranga',
+    job_description: 'descript',
+  },
+  {
+    uid: 'asdasd',
+    title: 'Analista de Desenvolvimento de Produtos Sênior',
+    role: 'Tempo Integral',
+    location: 'Posto',
+    apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
+    category: 'Cheio de gás',
+    company: 'Ipiranga',
+    company_link: 'www.ipiranga.com.br',
+    company_img: '',
+    company_category: 'Gasolina',
+    company_tag: 'ipi ipi ipiranga',
+    job_description: 'descript',
+  },
+  {
+    uid: 'd2',
+    title: 'Analista de Desenvolvimento de Produtos Sênior',
     role: 'Tempo Integral',
     location: 'Posto',
     apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
@@ -77,7 +189,9 @@ import JobCard from './JobCard.astro'
 
 <div
   class="w-full max-w-3xl rounded-lg bg-white p-6 shadow-lg"
-  x-data="jobFilter()">
+  x-data="jobFilter2()"
+  x-init="init()"
+  data-jobs={JSON.stringify(data)}>
   <div class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
     <input
       type="text"
@@ -87,9 +201,9 @@ import JobCard from './JobCard.astro'
     />
     <input
       type="text"
-      placeholder="Search by place"
+      placeholder="Search by location"
       class="w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      x-model="searchQuery.place"
+      x-model="searchQuery.location"
     />
     <input
       type="text"
@@ -134,18 +248,17 @@ import JobCard from './JobCard.astro'
   </div>
   <div>
     <ul>
-      <template x-for="job in filteredJobs" :key="job.id">
+      <template x-for="job in filteredJobs" :key="job.uid">
         <li class="border-b border-gray-200 py-2">
           <span class="font-semibold" x-text="job.title"></span> - <span
-            x-text="job.type"></span> - <span x-text="job.place"></span> - <span
+            x-text="job.role"></span> - <span x-text="job.location"></span> - <span
             x-text="job.category"></span>
         </li>
       </template>
     </ul>
   </div>
 </div>
-
-<div x-data="search">
+<div>
   <div class="mb-12 border-b border-solid border-slate-300 p-6">
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
       <div class="relative w-full">
@@ -279,26 +392,7 @@ import JobCard from './JobCard.astro'
     {data.map(i => <JobCard data={i} />)}
   </ul>
 </div>
-<!-- <div class="grid-container">
-  {
-    stateCounts.map(r => (
-      <div class="grid-item">
-        {r.state}: {r.count}
-      </div>
-    ))
-  }
-</div>
 
-<h3>Coffee Roasters with Location</h3>
-<div class="grid-container">
-  {
-    data.map(r => (
-      <div class="grid-item">
-        {r.roaster} - {r.location}
-      </div>
-    ))
-  }
-</div> -->
 <style>
   input {
     @apply font-semibold text-slate-500;
