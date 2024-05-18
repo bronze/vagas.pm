@@ -207,5 +207,13 @@ document.addEventListener('alpine:init', () => {
       this.jobs = JSON.parse(this.$el.getAttribute('data-jobs')) // Access jobs data passed from Astro.js
       console.log(this.jobs)
     },
+    selectFramework(framework) {
+      this.selected = framework
+      this.searchQuery.category = framework.name
+      this.filterJobs()
+    },
+    filterJobs() {
+      // The filter function will automatically run due to reactivity in Alpine.js
+    },
   }))
 })

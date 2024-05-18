@@ -229,10 +229,10 @@ import JobCard from './JobCard.astro'
               <input
                 x-combobox:input
                 :display-value="framework => framework.name"
-                @change="searchQuery.category"
                 class="w-full border-none p-0 pl-10 focus:outline-none focus:ring-0"
                 placeholder="Categorias"
                 x-model="searchQuery.category"
+                @change="filterJobs"
               />
               <button
                 x-combobox:button
@@ -264,7 +264,7 @@ import JobCard from './JobCard.astro'
                   hidden>
                   <li
                     x-combobox:option
-                    @click="selected = framework"
+                    @click="selectFramework(framework)"
                     :value="framework"
                     :disabled="framework.disabled"
                     :class="{
