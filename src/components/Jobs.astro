@@ -85,7 +85,7 @@ import JobCard from './JobCard.astro'
       <input
         type="text"
         placeholder="Palavras-chave"
-        class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
       />
     </div>
     <div class="relative w-full">
@@ -96,14 +96,14 @@ import JobCard from './JobCard.astro'
       <input
         type="text"
         placeholder="Local"
-        class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
       />
     </div>
     <div x-data="categorias">
       <div
         x-combobox
         x-model="selected"
-        class="relative rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
+        class="relative rounded-lg focus-within:ring-2 focus-within:ring-sky-300">
         <div class="relative">
           <div
             class="relative flex items-center justify-between gap-2 rounded-lg border border-gray-300 bg-white p-2">
@@ -177,9 +177,29 @@ import JobCard from './JobCard.astro'
     </div>
 
     <button
-      class="rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      class="rounded-lg bg-sky-300 px-4 py-2 text-white hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-300">
       Search
     </button>
+  </div>
+  <div class="pt-6 font-semibold text-slate-500">
+    <div class="flex space-x-4">
+      <label class="inline-flex items-center">
+        <input type="checkbox" class="form-checkbox peer" />
+        <span class="ml-2 peer-checked:text-sky-300">Freelance</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="checkbox" class="form-checkbox peer" />
+        <span class="ml-2 peer-checked:text-sky-300">Full-time</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="checkbox" class="form-checkbox peer" />
+        <span class="ml-2 peer-checked:text-sky-300">Internship</span>
+      </label>
+      <label class="inline-flex items-center">
+        <input type="checkbox" class="form-checkbox peer" />
+        <span class="ml-2 peer-checked:text-sky-300">Part-time</span>
+      </label>
+    </div>
   </div>
 </div>
 
@@ -210,5 +230,8 @@ import JobCard from './JobCard.astro'
 <style>
   input {
     @apply font-semibold text-slate-500;
+  }
+  input[type='checkbox'] {
+    @apply text-white accent-sky-600;
   }
 </style>
