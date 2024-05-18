@@ -366,16 +366,20 @@ import JobCard from './JobCard.astro'
                 <span class="" x-text="job.company_category"></span>
               </p>
             </div>
-            <div class="text-right">
-              <p class="text-base" title="Local">
-                <span x-text="job.location"></span>
+            <div class="space-y-1 text-right">
+              <p class="text-sm" title="Categoria">
+                <span x-text="job.category"></span>
               </p>
               <p
                 class="text-sm font-bold text-slate-700"
                 title="Role"
                 x-text="job.role">
               </p>
-              <p class="text-xs font-light italic text-slate-400">time</p>
+              <p
+                class="text-base text-slate-700"
+                title="Local"
+                x-text="job.location">
+              </p>
               <!-- <a
         href={data.apply_link}
         class="absolute -right-12 top-0 m-0 font-mono text-xs font-bold"
@@ -385,7 +389,7 @@ import JobCard from './JobCard.astro'
       </a> -->
             </div>
           </div>
-          <p x-show="expanded" x-collapse.min.35px>
+          <p x-show="expanded" x-collapse.min.30px class="py-4">
             <span class="whitespace-pre-line" x-html="job.job_description">
             </span>
             <br />
