@@ -49,6 +49,9 @@ devDependencies:
   '@alpinejs/ui':
     specifier: 3.13.10-beta.0
     version: 3.13.10-beta.0
+  '@iconify-json/mdi':
+    specifier: ^1.1.66
+    version: 1.1.66
   astro-icon:
     specifier: ^1.1.0
     version: 1.1.0
@@ -854,6 +857,12 @@ packages:
   /@fontsource/roboto@5.0.13:
     resolution: {integrity: sha512-j61DHjsdUCKMXSdNLTOxcG701FWnF0jcqNNQi2iPCDxU8seN/sMxeh62dC++UiagCWq9ghTypX+Pcy7kX+QOeQ==}
     dev: false
+
+  /@iconify-json/mdi@1.1.66:
+    resolution: {integrity: sha512-7KPF2RVUUWav/hXCM8Ti/smqu3cmgePJpiX9CSkldiL+80+eBRBeKlc4vPOc9jhAItlqIU1vKsbKoPP0JIfgbg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
 
   /@iconify/tools@3.0.7:
     resolution: {integrity: sha512-DxfhFLMnooS34dHelpGUnnYrxLZHs0czC1CgrBhAbuL8ddVzBb2VEQm8kh9qGh7A34qeXAB5iSHH3A72rAaFrg==}

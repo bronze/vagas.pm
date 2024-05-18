@@ -26,6 +26,7 @@
   "devDependencies": {
     "@alpinejs/focus": "^3.13.10",
     "@alpinejs/ui": "3.13.10-beta.0",
+    "@iconify-json/mdi": "^1.1.66",
     "astro-icon": "^1.1.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
