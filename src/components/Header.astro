@@ -34,6 +34,16 @@
     <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
       <div
         class="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+        <a href="#" onclick="fillInput('keywords', 'Design')"
+          >Fill Keywords with 'Design'</a
+        ><br />
+        <a href="#" onclick="fillInput('place', 'New York')"
+          >Fill Place with 'New York'</a
+        ><br />
+        <a href="#" onclick="fillInput('category', 'Technology')"
+          >Fill Category with 'Technology'</a
+        >
+
         <a href="#">Open roles <span aria-hidden="true">&rarr;</span></a>
         <a href="#">Internship program <span aria-hidden="true">&rarr;</span></a
         >
@@ -73,4 +83,17 @@
       </dl>
     </div>
   </div>
-</div>
+</div>1
+<script is:inline>
+  function fillInput(text) {
+    const input = document.getElementById('keywords')
+    if (input) {
+      input.focus()
+      input.value = text
+
+      // Dispatch an input event to trigger any associated listeners
+      const event = new Event('input', { bubbles: true })
+      input.dispatchEvent(event)
+    }
+  }
+</script>

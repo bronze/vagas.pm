@@ -3,188 +3,13 @@ import { Icon } from 'astro-icon/components'
 const res = await fetch(
   'https://script.google.com/macros/s/AKfycbzJaWR9GG_sLn1dkbgum3AeM1LmLS1Nktkrn8K0pFrlkip0mPn9JRdQQcvrbF-IL-Do/exec',
 )
-const { data } = await res.json()
+import jobsList from './jobs.json'
+const isDev = import.meta.env.DEV
+const data = isDev ? jobsList : await res.json()
+
+// const { data } =
 // console.log(data)
-// const data = [
-//   {
-//     uid: 1,
-//     title: 'Lead Design',
-//     role: 'Freelance',
-//     location: 'Remote',
-//     category: 'Design',
-//     apply_link: 'https://lnkd.in/e6Hpt9Sj',
-//     company: 'Apple',
-//     company_link: 'www.radix.com.br',
-//     company_img: 'https://vagaspm.netlify.app/refresh.png',
-//     company_category: 'IT Services and IT Consulting',
-//     company_tag: '',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: 2,
-//     title: 'Product Manager',
-//     role: 'Full-time',
-//     location: 'New York',
-//     category: 'Product Management',
-//     apply_link: 'https://lnkd.in/e6Hpt9Sj',
-//     company: 'Microsoft',
-//     company_link: 'www.radix.com.br',
-//     company_img: 'https://vagaspm.netlify.app/refresh.png',
-//     company_category: 'IT Services and IT Consulting',
-//     company_tag: '',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: 3,
-//     title: 'Project Manager',
-//     role: 'Part-time',
-//     location: 'San Francisco',
-//     category: 'Product Management',
-//     apply_link: 'https://lnkd.in/e6Hpt9Sj',
-//     company: 'Amplitude',
-//     company_link: 'www.radix.com.br',
-//     company_img: 'https://vagaspm.netlify.app/refresh.png',
-//     company_category: 'IT Services and IT Consulting',
-//     company_tag: '',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: 4,
-//     title: 'Redator',
-//     role: 'Internship',
-//     location: 'Los Angeles',
-//     category: 'IT',
-//     apply_link: 'https://lnkd.in/e6Hpt9Sj',
-//     company: 'iFood',
-//     company_link: 'www.radix.com.br',
-//     company_img: 'https://vagaspm.netlify.app/refresh.png',
-//     company_category: 'IT Services and IT Consulting',
-//     company_tag: '',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: 5,
-//     title: 'Graphic Designer',
-//     role: 'Freelance',
-//     location: 'Remote',
-//     category: 'Design',
-//     apply_link: 'https://lnkd.in/e6Hpt9Sj',
-//     company: 'Radix',
-//     company_link: 'www.radix.com.br',
-//     company_img: 'https://vagaspm.netlify.app/refresh.png',
-//     company_category: 'IT Services and IT Consulting',
-//     company_tag: '',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: 6,
-//     title: 'Data Scientist',
-//     role: 'Full-time',
-//     location: 'Chicago',
-//     category: 'Data',
-//     apply_link: 'https://lnkd.in/e6Hpt9Sj',
-//     company: 'Radix',
-//     company_link: 'www.radix.com.br',
-//     company_img: 'https://vagaspm.netlify.app/refresh.png',
-//     company_category: 'IT Services and IT Consulting',
-//     company_tag: '',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: '803b5f28-33ca-43a1-acc9-37a8ca2c565f',
-//     title: 'Profissional de Product Owner Júnior ',
-//     role: 'Freelance',
-//     location: 'Remoto',
-//     apply_link: 'https://lnkd.in/e6Hpt9Sj',
-//     category: 'Product Owner',
-//     company: 'Radix',
-//     company_link: 'www.radix.com.br',
-//     company_img: 'https://vagaspm.netlify.app/refresh.png',
-//     company_category: 'IT Services and IT Consulting',
-//     company_tag: '',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: '2a229012-c253-4cbd-84c8-889678817dc3',
-//     title: 'Analista de Desenvolvimento de Produtos Sênior',
-//     role: 'Tempo Integral',
-//     location: 'Posto',
-//     apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
-//     category: 'Cheio de gás',
-//     company: 'Ipiranga',
-//     company_link: 'www.ipiranga.com.br',
-//     company_img: '',
-//     company_category: 'Gasolina',
-//     company_tag: 'ipi ipi ipiranga',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: '0cbb94c4-db5c-4dcf-a303-75ccee696ea4',
-//     title: 'Analista de Desenvolvimento de Produtos Sênior',
-//     role: 'Tempo Integral',
-//     location: 'Posto',
-//     apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
-//     category: 'Cheio de gás',
-//     company: 'Ipiranga',
-//     company_link: 'www.ipiranga.com.br',
-//     company_img: '',
-//     company_category: 'Gasolina',
-//     company_tag: 'ipi ipi ipiranga',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: 'asdasd',
-//     title: 'Analista de Desenvolvimento de Produtos Sênior',
-//     role: 'Tempo Integral',
-//     location: 'Posto',
-//     apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
-//     category: 'Cheio de gás',
-//     company: 'Ipiranga',
-//     company_link: 'www.ipiranga.com.br',
-//     company_img: '',
-//     company_category: 'Gasolina',
-//     company_tag: 'ipi ipi ipiranga',
-//     job_description: 'descript',
-//   },
-//   {
-//     uid: 'd2',
-//     title: 'Analista de Desenvolvimento de Produtos Sênior',
-//     role: 'Tempo Integral',
-//     location: 'Posto',
-//     apply_link: 'https://www.linkedin.com/jobs/view/3916621604/',
-//     category: 'Cheio de gás',
-//     company: 'Ipiranga',
-//     company_link: 'www.ipiranga.com.br',
-//     company_img: '',
-//     company_category: 'Gasolina',
-//     company_tag: 'ipi ipi ipiranga',
-//     job_description: 'descript',
-//   },
-// ]
-
-import JobCard from './JobCard.astro'
-
-// create an array of unique states and the count of each that appears in the data
-// const states = data.reduce((acc, cur) => {
-//   const state = cur.state
-//   if (acc[state]) {
-//     acc[state] += 1
-//   } else {
-//     acc[state] = 1
-//   }
-//   return acc
-// }, {})
-
-// sort the states by count descending
-// const sortedStates = Object.keys(states).sort((a, b) => states[b] - states[a])
-
-// create an object array of states and counts
-// const stateCounts = sortedStates.map(state => {
-//   return {
-//     state,
-//     count: states[state],
-//   }
-// })
+// const data =
 ---
 
 <div x-data="jobFilter2()" x-init="init()" data-jobs={JSON.stringify(data)}>
@@ -197,6 +22,7 @@ import JobCard from './JobCard.astro'
         />
         <input
           type="text"
+          id="keywords"
           placeholder="Palavras-chave"
           class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
           x-model="searchQuery.keywords"
@@ -210,6 +36,7 @@ import JobCard from './JobCard.astro'
         />
         <input
           type="text"
+          id="place"
           placeholder="Local"
           class="w-full rounded-lg border border-gray-300 p-2 pl-10 focus:outline-none focus:ring-2 focus:ring-sky-300"
           x-model="searchQuery.location"
@@ -230,6 +57,7 @@ import JobCard from './JobCard.astro'
               />
               <input
                 x-combobox:input
+                id="category"
                 :display-value="framework => framework.name"
                 class="w-full border-none p-0 pl-10 focus:outline-none focus:ring-0"
                 placeholder="Categorias"
