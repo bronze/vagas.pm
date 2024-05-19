@@ -34,19 +34,24 @@
     <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
       <div
         class="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-        <a href="#" onclick="fillInput('input', 'keywords', 'Raízen')">
+        <a
+          href="#"
+          onclick="fillInput(['place'], ['category'], 'keywords', 'Raízen')">
           Vagas na Raízen <span aria-hidden="true">&rarr;</span>
         </a>
-        <a href="#" onclick="fillInput('input','place', 'Rio de Janeiro')">
+        <a
+          href="#"
+          onclick="fillInput(['keywords'], ['category'], 'place', 'Rio de Janeiro')">
           Vagas no Rio de Janeiro <span aria-hidden="true">&rarr;</span>
         </a>
         <a
           href="#"
-          onclick="fillInput('select', 'category', 'Product Management')">
+          onclick="fillInput(['keywords', 'place'], null , 'category', 'Product Management')">
           Vagas de Product Management <span aria-hidden="true">&rarr;</span>
         </a>
-
-        <a href="#" onclick="fillInput('select', 'category', 'Design')">
+        <a
+          href="#"
+          onclick="fillInput(['keywords', 'place'], null , 'category', 'Design')">
           Vagas de Design <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
@@ -83,18 +88,46 @@
   </div>
 </div>
 <script is:inline>
-  function fillInput(elementType, elementId, text) {
-    const element = document.getElementById(elementId)
-    if (element) {
-      element.focus()
-      element.value = text
+  function fillInput(inputClearIds, selectClearId, targetType, text) {
+    // Clear other input boxes
+    if (inputClearIds) {
+      inputClearIds.forEach(id => {
+        const element = document.getElementById(id)
+        if (element) {
+          element.value = ''
+          element.dispatchEvent(new Event('input')) // Trigger input event
+        }
+      })
+    }
 
-      // Dispatch an input or change event to trigger any associated listeners
-      const event = new Event(
-        elementType.toLowerCase() === 'input' ? 'input' : 'change',
-        { bubbles: true },
-      )
-      element.dispatchEvent(event)
+    // Clear other select box
+    if (selectClearId) {
+      const element = document.getElementById(selectClearId)
+      if (element) {
+        element.value = ''
+        element.dispatchEvent(new Event('change')) // Trigger change event
+      }
+    }
+
+    // Fill the target element
+    if (targetType === 'category') {
+      const targetElement = document.getElementById(targetType)
+      if (targetElement) {
+        targetElement.focus()
+        targetElement.value = text
+
+        // Dispatch a change event to trigger any associated listeners
+        targetElement.dispatchEvent(new Event('change'))
+      }
+    } else {
+      const targetElement = document.getElementById(targetType)
+      if (targetElement) {
+        targetElement.focus()
+        targetElement.value = text
+
+        // Dispatch an input event to trigger any associated listeners
+        targetElement.dispatchEvent(new Event('input'))
+      }
     }
   }
 </script>
