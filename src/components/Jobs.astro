@@ -68,7 +68,8 @@ const { data } = await res.json()
       </button> -->
     </div>
     <div class="pt-6 font-semibold text-slate-500">
-      <div class="flex space-x-4">
+      <div
+        class="grid flex-wrap items-center justify-between md:flex md:space-x-4">
         <label class="inline-flex items-center">
           <input
             type="checkbox"
@@ -101,8 +102,13 @@ const { data } = await res.json()
           />
           <span class="ml-2 peer-checked:text-sky-300">Meio Expediente</span>
         </label>
-        <div class="inline-flex flex-grow justify-end">
-          <button onclick="clearSelections()">Clear Selections</button>
+        <div
+          class="mt-6 inline-flex flex-grow items-center md:mt-0 md:justify-end">
+          <button
+            onclick="clearSelections(this)"
+            class="inline-flex rounded-lg px-2 py-1 hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-300">
+            Limpar campos
+          </button>
         </div>
       </div>
     </div>
@@ -208,7 +214,7 @@ const { data } = await res.json()
   }
 </style>
 <script is:inline>
-  function clearSelections() {
+  function clearSelections(button) {
     // Clear input boxes
     const inputElements = document.querySelectorAll('input')
     inputElements.forEach(input => {
@@ -222,5 +228,8 @@ const { data } = await res.json()
       select.value = ''
       select.dispatchEvent(new Event('change')) // Trigger change event
     })
+
+    // Clear focus from the button
+    button.blur()
   }
 </script>
