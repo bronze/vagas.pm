@@ -34,17 +34,19 @@
     <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
       <div
         class="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-        <a href="#" onclick="fillInput('keywords', 'Design')">
-          Vagas de Design <span aria-hidden="true">&rarr;</span>
+        <a href="#" onclick="fillInput('input', 'keywords', 'Raízen')">
+          Vagas na Raízen <span aria-hidden="true">&rarr;</span>
         </a>
-        <a href="#" onclick="fillInput('place', 'Rio de Janeiro')">
+        <a
+          href="#"
+          onclick="fillInput('input', 'keywords', 'Product Management')">
+          Vagas de Product Management <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="#" onclick="fillInput('input','place', 'Rio de Janeiro')">
           Vagas no Rio de Janeiro <span aria-hidden="true">&rarr;</span>
         </a>
-        <a href="#" onclick="fillInput('category', 'Design')">
+        <a href="#" onclick="fillInput('select', 'category', 'Design')">
           Vagas de Design <span aria-hidden="true">&rarr;</span>
-        </a>
-        <a href="#" onclick="fillInput('keywords', 'Raízen')">
-          Vagas na Raízen <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
       <dl
@@ -78,20 +80,20 @@
       </dl>
     </div>
   </div>
-</div>1
+</div>
 <script is:inline>
-  function fillInput(inputId, text) {
-    const input = document.getElementById(inputId)
-    if (input) {
-      input.focus()
-      input.value = text
+  function fillInput(elementType, elementId, text) {
+    const element = document.getElementById(elementId)
+    if (element) {
+      element.focus()
+      element.value = text
 
       // Dispatch an input or change event to trigger any associated listeners
       const event = new Event(
-        input.tagName.toLowerCase() === 'input' ? 'input' : 'change',
+        elementType.toLowerCase() === 'input' ? 'input' : 'change',
         { bubbles: true },
       )
-      input.dispatchEvent(event)
+      element.dispatchEvent(event)
     }
   }
 </script>
