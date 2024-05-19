@@ -4,8 +4,7 @@ const res = await fetch(
   'https://script.google.com/macros/s/AKfycbzJaWR9GG_sLn1dkbgum3AeM1LmLS1Nktkrn8K0pFrlkip0mPn9JRdQQcvrbF-IL-Do/exec',
 )
 import jobsList from './jobs.json'
-const isDev = import.meta.env.DEV
-const data = isDev ? jobsList : await res.json()
+const { data } = await res.json()
 
 // const { data } =
 // console.log(data)
@@ -46,7 +45,7 @@ const data = isDev ? jobsList : await res.json()
 
       <div class="relative w-full">
         <Icon
-          name="mdi:place-outline"
+          name="mdi:category-plus-outline"
           class="absolute left-3 top-1/2 -translate-y-1/2 transform text-2xl text-gray-400"
         />
         <label for="category" class="sr-only">Categorias</label>
@@ -188,10 +187,14 @@ const data = isDev ? jobsList : await res.json()
     </ul>
   </div>
 </div>
-
+1
 <style>
-  input {
+  input,
+  select,
+  select > * {
     @apply font-semibold text-slate-500;
+    line-height: 24px; /* fucking hack */
+    height: 42px; /* fucking hack cause select box has smaller height */
   }
   input[type='checkbox'] {
     @apply text-white accent-sky-600;
