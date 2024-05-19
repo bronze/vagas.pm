@@ -101,6 +101,9 @@ const { data } = await res.json()
           />
           <span class="ml-2 peer-checked:text-sky-300">Meio Expediente</span>
         </label>
+        <div class="inline-flex flex-grow justify-end">
+          <button onclick="clearSelections()">Clear Selections</button>
+        </div>
       </div>
     </div>
   </div>
@@ -187,7 +190,7 @@ const { data } = await res.json()
     </ul>
   </div>
 </div>
-1
+
 <style>
   input,
   select,
@@ -204,3 +207,20 @@ const { data } = await res.json()
     cursor: pointer;
   }
 </style>
+<script is:inline>
+  function clearSelections() {
+    // Clear input boxes
+    const inputElements = document.querySelectorAll('input')
+    inputElements.forEach(input => {
+      input.value = ''
+      input.dispatchEvent(new Event('input')) // Trigger input event
+    })
+
+    // Clear select boxes
+    const selectElements = document.querySelectorAll('select')
+    selectElements.forEach(select => {
+      select.value = ''
+      select.dispatchEvent(new Event('change')) // Trigger change event
+    })
+  }
+</script>
